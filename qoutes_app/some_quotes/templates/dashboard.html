@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>📊 Статистика</h2>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ total_quotes }}</h5>
+                <p class="card-text">📝 Всего цитат</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ total_sources }}</h5>
+                <p class="card-text">📚 Источников</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ total_views }}</h5>
+                <p class="card-text">👁️ Просмотров</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ total_likes }}</h5>
+                <p class="card-text">❤️ Лайков</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>⭐ Популярные источники</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>📚 Источник</th>
+            <th>📝 Цитат</th>
+            <th>❤️ Лайков</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for source in popular_sources %}
+        <tr>
+            <td>{{ source.title }}</td>
+            <td>{{ source.total_quotes }}</td>
+            <td>{{ source.total_likes }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3" class="text-center">📝 Нет данных</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
